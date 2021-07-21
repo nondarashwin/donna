@@ -1,0 +1,14 @@
+{
+"keyword": [
+  {
+    "keyword_command": "please provide the email id",
+    "keyword_bridge_name": "from"
+  },
+  {
+    "keyword_command": "please provide the password",
+    "keyword_bridge_name": "password"
+  }
+
+],
+  "handler": "bridge/setup_email_bridge.json"
+}

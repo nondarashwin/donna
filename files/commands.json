@@ -1,0 +1,15 @@
+{
+  "trigger_keyword": "Alexa",
+  "commands": [
+    {
+      "command": "send mail",
+      "location": "files/email_bridge.json"
+
+    },
+    {
+      "command": "setup email",
+      "location": "files/email_setup_bridge.json"
+    }
+  ]
+
+}

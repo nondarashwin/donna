@@ -15,6 +15,7 @@ except:
 
 
 def execution_handler(command_found, command_file_location):
+    print("execution_handler")
     try:
         command_file = open(command_file_location)
         command_details = json.load(command_file)
@@ -26,13 +27,17 @@ def execution_handler(command_found, command_file_location):
         command_input[i["keyword_bridge_name"]] = speech_to_text.speech_to_text()
     bridge_input = json.dumps(command_input)
     bridge_location = command_details["handler"]
-    b = os.system("python " + bridge_location + " " + bridge_input)
+    print(bridge_input)
+
+    b = os.system("python3 " + bridge_location + " '" + bridge_input+"'")
     text_to_speech.text_to_speech(b)
 
 
 def command_handler(value):
+    print("command_handler")
     if type(value) != str:
         return
+    value=value.lower()
     global commands
     flag = True
     command_file_location = ""
@@ -45,8 +50,13 @@ def command_handler(value):
         return
     command_keyword_index = trigger_keyword_index + len(trigger_keyword)
     words = value[command_keyword_index:]
+    print("after trigger word")
+    print(words)
     for command in commands["commands"]:
+        print(command)
+        command_words=command["command"].split(" ")
         if command["command"] in words:
+            #print(command["command"])
             command_file_location = command["location"]
             command_found = command
             flag = False

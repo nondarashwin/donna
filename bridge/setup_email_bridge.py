@@ -1,7 +1,8 @@
 import json
 import sys
 
-
-data = json.loads(sys.argv[1])
-with open("email.json", "w") as outfile:
+print(sys.argv[1])
+data = sys.argv[1]
+print(data)
+with open("files/email.json", "w") as outfile:
     outfile.write(data)

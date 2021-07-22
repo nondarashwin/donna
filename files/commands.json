@@ -1,5 +1,5 @@
 {
-  "trigger_keyword": "Alexa",
+  "trigger_keyword": "alexa",
   "commands": [
     {
       "command": "send mail",

@@ -2,16 +2,19 @@
 "keyword": [
   {
     "keyword_command": "to",
-    "keyword_bridge_name": "to"
+    "keyword_bridge_name": "to",
+    "answer":"harshitha.bm1011@gmail.com"
   },
   {
     "keyword_command": "subject",
-    "keyword_bridge_name": "message"
+    "keyword_bridge_name": "subject",
+    "answer": "project state"
   },{
     "keyword_command": "message",
-    "keyword_bridge_name": "message"
+    "keyword_bridge_name": "message",
+    "answer":"hi we are testing the software"
   }
 
 ],
-  "handler": "bridge/email_bridge.json"
+  "handler": "bridge/email_bridge.py"
 }

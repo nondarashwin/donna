@@ -40,3 +40,6 @@ try:
 except InvalidEmail:
     print("email not found")
     sys.exit(1)
+except:
+    print("failed to execute")
+    sys.exit(1)

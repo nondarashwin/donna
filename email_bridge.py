@@ -2,6 +2,8 @@ import json
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
+import speech_to_text
+import text_to_speech
 import sys
 import os
 import json
@@ -18,6 +20,26 @@ class Error(Exception):
 class InvalidEmail(Error):
     """Invalid Email Error"""
     pass
+
+
+def verify_email(email):
+    flag = True
+    for i in range(5):
+        email = email.lower()
+        email = email.replace(" ", "")
+        email = email.replace("at", "@")
+        email = email.replace("dot", ".")
+        if check(email):
+            return email
+        else:
+            text_to_speech.text_to_speech("please say the email again")
+            email = speech_to_text.speech_to_text()
+    if flag:
+        while True:
+            text_to_speech.text_to_speech("please enter the email manually")
+            email = input("Enter the mail again")
+            if check(email):
+                return email
 
 
 def check(email):
@@ -43,7 +65,7 @@ except:
 try:
     data = json.loads(sys.argv[1])
     print(data)
-    SERVER ='smtp.gmail.com'
+    SERVER = 'smtp.gmail.com'
     PORT = 465
 
     FROM = emails["from"]
@@ -55,7 +77,7 @@ try:
     messages = data["message"]
     message = MIMEMultipart()
     message['From'] = FROM
-    message['To'] = TO
+    message['To'] = verify_email(TO)
     message['Subject'] = SUBJECT
     # The body and the attachments for the mail
     message.attach(MIMEText(messages, 'plain'))
@@ -74,4 +96,3 @@ except json.JSONDecodeError:
 except InvalidEmail:
     print("Invalid Email Error")
     sys.exit(1)
-

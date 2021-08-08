@@ -43,6 +43,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/email_bridge.py">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/files/commands.json">
           <value>
             <set />
@@ -69,6 +74,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/main.py">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/setup_email_bridge.py">
           <value>
             <set />
           </value>

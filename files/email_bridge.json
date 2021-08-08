@@ -13,5 +13,5 @@
   }
 
 ],
-  "handler": "bridge/email_bridge.py"
+  "handler": "email_bridge.py"
 }

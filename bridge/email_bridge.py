@@ -43,8 +43,8 @@ except:
 try:
     data = json.loads(sys.argv[1])
     print(data)
-    SERVER = "smtp-mail.outlook.com"
-    PORT = 587
+    SERVER ='smtp.gmail.com'
+    PORT = 465
 
     FROM = emails["from"]
     PASSWORD = emails["password"]
@@ -61,9 +61,6 @@ try:
     message.attach(MIMEText(messages, 'plain'))
     print("setting up server")
     session = smtplib.SMTP_SSL(SERVER, PORT)
-    session.ehlo()
-    session.starttls()  # enable security
-    session.ehlo()
     print("login into mail")
     session.login(FROM, PASSWORD)  # login with mail_id and password
     text = message.as_string()
@@ -77,6 +74,4 @@ except json.JSONDecodeError:
 except InvalidEmail:
     print("Invalid Email Error")
     sys.exit(1)
-except :
-    print("Failed to Execute")
-    sys.exit(1)
+

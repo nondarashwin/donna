@@ -10,7 +10,7 @@
       "command": "setup email",
       "location": "files/email_setup_bridge.json"
     },{
-      "command": "what is the time?",
+      "command": "what is the time",
       "location": "files/time_bridge.json"
     }
   ]

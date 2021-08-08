@@ -74,3 +74,5 @@ except json.JSONDecodeError:
     print("Failed to Execute")
 except InvalidEmail:
     print("Invalid Email Error")
+except :
+    print("Failed to Execute")

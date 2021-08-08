@@ -2,6 +2,7 @@ import json
 import text_to_speech
 import speech_to_text
 import os
+import time
 
 try:
     main_command_file = open("files/commands.json")
@@ -28,16 +29,18 @@ def execution_handler(command_found, command_file_location):
     bridge_input = json.dumps(command_input)
     bridge_location = command_details["handler"]
     print(bridge_input)
-
-    b = os.system("python3 " + bridge_location + " '" + bridge_input+"'")
-    text_to_speech.text_to_speech(b)
+    b = os.system("python " + bridge_location + " '" + bridge_input + "'")
+    if b == 0:
+        text_to_speech.text_to_speech("task completed")
+    else:
+        text_to_speech.text_to_speech("task failed")
 
 
 def command_handler(value):
     print("command_handler")
     if type(value) != str:
         return
-    value=value.lower()
+    value = value.lower()
     global commands
     flag = True
     command_file_location = ""
@@ -54,9 +57,9 @@ def command_handler(value):
     print(words)
     for command in commands["commands"]:
         print(command)
-        command_words=command["command"].split(" ")
+        command_words = command["command"].split(" ")
         if command["command"] in words:
-            #print(command["command"])
+            # print(command["command"])
             command_file_location = command["location"]
             command_found = command
             flag = False

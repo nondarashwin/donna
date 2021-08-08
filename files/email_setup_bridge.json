@@ -10,5 +10,5 @@
   }
 
 ],
-  "handler": "bridge/setup_email_bridge.json"
+  "handler": "bridge/setup_email_bridge.py"
 }

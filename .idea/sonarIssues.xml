@@ -3,6 +3,11 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/bridge/email.json">
           <value>
             <set />
@@ -14,6 +19,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/bridge/setup_email_bridge.py">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/bridge/time.py">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/bridge/try.py">
           <value>
             <set />
           </value>
@@ -43,6 +58,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/files/time_bridge.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/main.py">
           <value>
             <set />
@@ -54,6 +74,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/text_to_speech.py">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/time.py">
           <value>
             <set />
           </value>

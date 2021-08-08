@@ -12,6 +12,13 @@ import re
 regex = '^[a-z0-9]+[\._]?[ a-z0-9]+[@]\w+[. ]\w{2,3}$'
 
 
+def check(email):
+    if re.search(regex, email):
+        return True
+    else:
+        return False
+
+
 class Error(Exception):
     """Base class for other exceptions"""
     pass
@@ -40,13 +47,6 @@ def verify_email(email):
             email = input("Enter the mail again")
             if check(email):
                 return email
-
-
-def check(email):
-    if re.search(regex, email):
-        return True
-    else:
-        return False
 
 
 try:

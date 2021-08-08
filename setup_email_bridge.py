@@ -4,6 +4,15 @@ import re
 import text_to_speech
 import speech_to_text
 
+regex = '^[a-z0-9]+[\._]?[ a-z0-9]+[@]\w+[. ]\w{2,3}$'
+
+
+def check(email):
+    if re.search(regex, email):
+        return True
+    else:
+        return False
+
 
 def verify_email(email):
     flag = True
@@ -27,7 +36,7 @@ def verify_email(email):
 
 def verify_password(password):
     password = password.replace(" ", "")
-    password = password.replace("at","@")
+    password = password.replace("at", "@")
     return password
 
 
@@ -39,16 +48,6 @@ class Error(Exception):
 class InvalidEmail(Error):
     """Invalid Email Error"""
     pass
-
-
-regex = '^[a-z0-9]+[\._]?[ a-z0-9]+[@]\w+[. ]\w{2,3}$'
-
-
-def check(email):
-    if re.search(regex, email):
-        return True
-    else:
-        return False
 
 
 try:

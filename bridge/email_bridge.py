@@ -29,7 +29,7 @@ def check(email):
 
 try:
     print("inside try")
-    loc = os.getcwd() + "\files\email.json"
+    loc = "files/email.json"
 
     print("**location**")
     print(loc)
@@ -39,6 +39,7 @@ try:
     print(emails)
 except:
     print("file not found")
+    sys.exit(1)
 try:
     data = json.loads(sys.argv[1])
     print(data)
@@ -72,7 +73,10 @@ try:
     session.quit()
 except json.JSONDecodeError:
     print("Failed to Execute")
+    sys.exit(1)
 except InvalidEmail:
     print("Invalid Email Error")
+    sys.exit(1)
 except :
     print("Failed to Execute")
+    sys.exit(1)

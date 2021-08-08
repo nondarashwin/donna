@@ -29,7 +29,7 @@ def check(email):
 
 try:
     print("inside try")
-    loc = os.getcwd() + "/files/email.json"
+    loc = os.getcwd() + "\files\email.json"
 
     print("**location**")
     print(loc)

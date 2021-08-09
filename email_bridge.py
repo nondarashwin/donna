@@ -90,10 +90,20 @@ def email_bridge(input_data):
         print("sending mail")
         session.sendmail(FROM, TO, text)
         print("mail sent")
+        text_to_speech.text_to_speech("task successful")
         session.quit()
     except json.JSONDecodeError:
         print("Failed to Execute")
+        text_to_speech.text_to_speech("Failed to execute")
         sys.exit(1)
     except InvalidEmail:
         print("Invalid Email Error")
+        text_to_speech.text_to_speech("Invalid Email Error")
         sys.exit(1)
+    except smtplib.SMTPAuthenticationError:
+        print("invalid Email")
+        text_to_speech.text_to_speech("Authentication Error username and password is wrong")
+        sys.exit(1)
+    except:
+        print("Task Failed")
+        text_to_speech.text_to_speech("Task Failed")

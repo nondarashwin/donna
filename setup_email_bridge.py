@@ -67,11 +67,14 @@ def setup_email_bridge(input_data):
                 raise InvalidEmail
             with open("files/email.json", "w") as outfile:
                 outfile.write(data)
+                text_to_speech.text_to_speech("task successful")
         else:
             raise InvalidEmail
     except InvalidEmail:
         print("email not found")
+        text_to_speech.text_to_speech("email not found")
         sys.exit(1)
     except:
         print("failed to execute")
+        text_to_speech.text_to_speech("failed to execute")
         sys.exit(1)

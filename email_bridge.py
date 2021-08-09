@@ -71,8 +71,6 @@ try:
     FROM = emails["from"]
     PASSWORD = emails["password"]
     TO = data["to"]
-    if not check(TO):
-        raise InvalidEmail
     SUBJECT = data["subject"]
     messages = data["message"]
     message = MIMEMultipart()

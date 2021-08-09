@@ -39,7 +39,7 @@ def verify_email(email):
         if check(email):
             return email
         else:
-            text_to_speech.text_to_speech("please say the email again")
+            text_to_speech.text_to_speech("please say the to email again")
             email = speech_to_text.speech_to_text()
     if flag:
         while True:
@@ -50,34 +50,35 @@ def verify_email(email):
 
 
 try:
-    print("inside try")
+    #print("inside try")
     loc = "files/email.json"
 
-    print("**location**")
-    print(loc)
+    #print("**location**")
+    #print(loc)
     emails_file = open(loc)
-    print("file found opening")
+    #print("file found opening")
     emails = json.load(emails_file)
-    print(emails)
+    #print(emails)
 except:
     print("file not found")
     sys.exit(1)
 try:
     data = json.loads(sys.argv[1])
-    print(data)
+    #print(data)
     SERVER = 'smtp.gmail.com'
     PORT = 465
-
     FROM = emails["from"]
     PASSWORD = emails["password"]
-    TO = data["to"]
+    TO = verify_email(data["to"])
     SUBJECT = data["subject"]
     messages = data["message"]
+    print("to:", TO)
+    print("subject:", SUBJECT)
+    print("message:", messages)
     message = MIMEMultipart()
     message['From'] = FROM
     message['To'] = verify_email(TO)
     message['Subject'] = SUBJECT
-    # The body and the attachments for the mail
     message.attach(MIMEText(messages, 'plain'))
     print("setting up server")
     session = smtplib.SMTP_SSL(SERVER, PORT)

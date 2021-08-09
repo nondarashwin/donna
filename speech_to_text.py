@@ -9,7 +9,7 @@ def speech_to_text():
         r1.adjust_for_ambient_noise(source, duration=1)
         print("ambient done")
         print(r1)
-        #text_to_speech.text_to_speech("please say the answer")
+        # text_to_speech.text_to_speech("please say the answer")
         audio = r1.listen(source)
         print("audio listened")
 
@@ -20,7 +20,10 @@ def speech_to_text():
             print(get)
             return get
         except  sr.UnknownValueError:
-            print('error')
+            return " "
         except  sr.RequestError  as e:
+            return " "
             print(e)
             print('failed'.format(e))
+        except:
+            return " "

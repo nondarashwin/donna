@@ -11,7 +11,6 @@ if __name__ == '__main__':
     while True:
         print("start")
         value = speech_to_text.speech_to_text()
-        print(value)
         command_handler.command_handler(value)
         print("end")
 

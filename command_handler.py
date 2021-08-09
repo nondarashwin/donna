@@ -1,8 +1,9 @@
 import json
-import text_to_speech
+import time_teller
+import email_bridge
+import setup_email_bridge
 import speech_to_text
-import os
-import time
+import text_to_speech
 
 try:
     main_command_file = open("files/commands.json")
@@ -29,11 +30,12 @@ def execution_handler(command_found, command_file_location):
     bridge_input = json.dumps(command_input)
     bridge_location = command_details["handler"]
     print(bridge_input)
-    b = os.system("python " + bridge_location + " '" + bridge_input + "'")
-    if b == 0:
-        text_to_speech.text_to_speech("task completed")
-    else:
-        text_to_speech.text_to_speech("task failed")
+    if bridge_location == "email_bridge.py":
+        email_bridge.email_bridge(bridge_input)
+    elif bridge_location == "setup_email_bridge.py":
+        setup_email_bridge.setup_email_bridge(bridge_input)
+    elif bridge_location == "time_teller.py":
+        time_teller.timeteller()
 
 
 def command_handler(value):

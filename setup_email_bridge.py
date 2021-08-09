@@ -53,24 +53,25 @@ class InvalidEmail(Error):
     pass
 
 
-try:
-    data = sys.argv[1]
-    data1 = json.loads(data)
-    data1["from"], data1["password"] = verify_email_and_password(data1["from"], data1["password"])
-    # data1["password"] = verify_password(data1["password"])
-    data = json.dumps(data1)
-    a = data1.keys()
-    print(data1)
-    if "from" in a and "password" in a and "gmail" in data1["from"]:
-        if not check(data1["from"]):
+def setup_email_bridge(input_data):
+    try:
+        data = input_data
+        data1 = json.loads(data)
+        data1["from"], data1["password"] = verify_email_and_password(data1["from"], data1["password"])
+        # data1["password"] = verify_password(data1["password"])
+        data = json.dumps(data1)
+        a = data1.keys()
+        print(data1)
+        if "from" in a and "password" in a and "gmail" in data1["from"]:
+            if not check(data1["from"]):
+                raise InvalidEmail
+            with open("files/email.json", "w") as outfile:
+                outfile.write(data)
+        else:
             raise InvalidEmail
-        with open("files/email.json", "w") as outfile:
-            outfile.write(data)
-    else:
-        raise InvalidEmail
-except InvalidEmail:
-    print("email not found")
-    sys.exit(1)
-except:
-    print("failed to execute")
-    sys.exit(1)
+    except InvalidEmail:
+        print("email not found")
+        sys.exit(1)
+    except:
+        print("failed to execute")
+        sys.exit(1)

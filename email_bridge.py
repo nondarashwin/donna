@@ -50,49 +50,50 @@ def verify_email(email):
                 return email
 
 
-try:
-    #print("inside try")
-    loc = "files/email.json"
+def email_bridge(input_data):
+    try:
+        # print("inside try")
+        loc = "files/email.json"
 
-    #print("**location**")
-    #print(loc)
-    emails_file = open(loc)
-    #print("file found opening")
-    emails = json.load(emails_file)
-    #print(emails)
-except:
-    print("file not found")
-    sys.exit(1)
-try:
-    data = json.loads(sys.argv[1])
-    #print(data)
-    SERVER = 'smtp.gmail.com'
-    PORT = 465
-    FROM = emails["from"]
-    PASSWORD = emails["password"]
-    TO = verify_email(data["to"])
-    SUBJECT = data["subject"]
-    messages = data["message"]
-    print("to:", TO)
-    print("subject:", SUBJECT)
-    print("message:", messages)
-    message = MIMEMultipart()
-    message['From'] = FROM
-    message['To'] = TO
-    message['Subject'] = SUBJECT
-    message.attach(MIMEText(messages, 'plain'))
-    print("setting up server")
-    session = smtplib.SMTP_SSL(SERVER, PORT)
-    print("login into mail")
-    session.login(FROM, PASSWORD)  # login with mail_id and password
-    text = message.as_string()
-    print("sending mail")
-    session.sendmail(FROM, TO, text)
-    print("mail sent")
-    session.quit()
-except json.JSONDecodeError:
-    print("Failed to Execute")
-    sys.exit(1)
-except InvalidEmail:
-    print("Invalid Email Error")
-    sys.exit(1)
+        # print("**location**")
+        # print(loc)
+        emails_file = open(loc)
+        # print("file found opening")
+        emails = json.load(emails_file)
+        # print(emails)
+    except:
+        print("file not found")
+        sys.exit(1)
+    try:
+        data = json.loads(input_data)
+        # print(data)
+        SERVER = 'smtp.gmail.com'
+        PORT = 465
+        FROM = emails["from"]
+        PASSWORD = emails["password"]
+        TO = verify_email(data["to"])
+        SUBJECT = data["subject"]
+        messages = data["message"]
+        print("to:", TO)
+        print("subject:", SUBJECT)
+        print("message:", messages)
+        message = MIMEMultipart()
+        message['From'] = FROM
+        message['To'] = TO
+        message['Subject'] = SUBJECT
+        message.attach(MIMEText(messages, 'plain'))
+        print("setting up server")
+        session = smtplib.SMTP_SSL(SERVER, PORT)
+        print("login into mail")
+        session.login(FROM, PASSWORD)  # login with mail_id and password
+        text = message.as_string()
+        print("sending mail")
+        session.sendmail(FROM, TO, text)
+        print("mail sent")
+        session.quit()
+    except json.JSONDecodeError:
+        print("Failed to Execute")
+        sys.exit(1)
+    except InvalidEmail:
+        print("Invalid Email Error")
+        sys.exit(1)

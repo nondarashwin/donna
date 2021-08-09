@@ -30,6 +30,7 @@ class InvalidEmail(Error):
 
 
 def verify_email(email):
+    print("verify_email_and_password")
     flag = True
     for i in range(5):
         email = email.lower()
@@ -77,7 +78,7 @@ try:
     print("message:", messages)
     message = MIMEMultipart()
     message['From'] = FROM
-    message['To'] = verify_email(TO)
+    message['To'] = TO
     message['Subject'] = SUBJECT
     message.attach(MIMEText(messages, 'plain'))
     print("setting up server")

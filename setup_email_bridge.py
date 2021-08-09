@@ -15,6 +15,7 @@ def check(email):
 
 
 def verify_email_and_password(email, password):
+    print("verify_email_and_password")
     flag = True
     for i in range(5):
         email = email.lower()
@@ -53,9 +54,7 @@ class InvalidEmail(Error):
 
 
 try:
-    #print(sys.argv[1])
     data = sys.argv[1]
-    #print(data)
     data1 = json.loads(data)
     data1["from"], data1["password"] = verify_email_and_password(data1["from"], data1["password"])
     # data1["password"] = verify_password(data1["password"])

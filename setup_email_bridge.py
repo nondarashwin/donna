@@ -14,7 +14,7 @@ def check(email):
         return False
 
 
-def verify_email(email):
+def verify_email_and_password(email, password):
     flag = True
     for i in range(5):
         email = email.lower()
@@ -22,7 +22,7 @@ def verify_email(email):
         email = email.replace("at", "@")
         email = email.replace("dot", ".")
         if check(email):
-            return email
+            return email, verify_password(password)
         else:
             text_to_speech.text_to_speech("please say the email again")
             email = speech_to_text.speech_to_text()
@@ -30,13 +30,15 @@ def verify_email(email):
         while True:
             text_to_speech.text_to_speech("please enter the email manually")
             email = input("Enter the mail again")
+
             if check(email):
-                return email
+                text_to_speech.text_to_speech(("please enter the password manually"))
+                password = input("Enter the password again")
+                return email, verify_password(password)
 
 
 def verify_password(password):
     password = password.replace(" ", "")
-    password = password.replace("at", "@")
     return password
 
 
@@ -55,8 +57,8 @@ try:
     data = sys.argv[1]
     print(data)
     data1 = json.loads(data)
-    data1["from"] = verify_email(data1["from"])
-    data1["password"] = verify_password(data1["password"])
+    data1["from"],data1["password"] = verify_email_and_password(data1["from"],data1["password"])
+    #data1["password"] = verify_password(data1["password"])
     data = json.dumps(data1)
     a = data1.keys()
     print(a)

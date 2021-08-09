@@ -32,7 +32,7 @@ def verify_email_and_password(email, password):
             email = input("Enter the mail again")
 
             if check(email):
-                text_to_speech.text_to_speech(("please enter the password manually"))
+                text_to_speech.text_to_speech("please enter the password manually")
                 password = input("Enter the password again")
                 return email, verify_password(password)
 
@@ -57,8 +57,8 @@ try:
     data = sys.argv[1]
     print(data)
     data1 = json.loads(data)
-    data1["from"],data1["password"] = verify_email_and_password(data1["from"],data1["password"])
-    #data1["password"] = verify_password(data1["password"])
+    data1["from"], data1["password"] = verify_email_and_password(data1["from"], data1["password"])
+    # data1["password"] = verify_password(data1["password"])
     data = json.dumps(data1)
     a = data1.keys()
     print(a)
